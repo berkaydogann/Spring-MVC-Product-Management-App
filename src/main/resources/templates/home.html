@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="tr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+</head>
+<body>
+<div class="container">
+    <div th:replace="navbar"></div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Price</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Image</th>
+                <th scope="col">Details</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item,iter : ${products}">
+                <th scope="row" th:text="${item.title}"></th>
+                <th scope="row" th:text="${item.price}"></th>
+                <td th:text="${item.stock}"></td>
+                <th scope="row">
+                <td><img th:src="@{${'/getImage/'+ item.pid}}"
+                         class="card img-fluid" style="width:300px" alt=""/></td>
+                </th>
+                <td>
+                    <a th:href="${'/detail/'+item.pid}" role="button" class="btn btn-primary btn-sm">Details</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+</div>
+
+</body>
+</html>
